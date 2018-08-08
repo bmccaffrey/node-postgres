@@ -1,10 +1,9 @@
 const express = require('express');
 const app = express();
+const { Client } = require('pg');
 const PORT = process.env.PORT || 5000;
 
 app.use(express.static('public'));
-// app.get('/', (req, res) => { res.sendFile('/Users/bryanmccaffrey/react/pgnode/public/index.html')})
-const { Client } = require('pg');
 
 const client = new Client({
   user: 'generic',
@@ -16,20 +15,7 @@ const client = new Client({
 
 client.connect();
 
-var myLogger = function(req, res, next) {
-  console.log('LOGGED');
-  next();
-};
-
-var requestTime = function(req, res, next) {
-  req.requestTime = Date.now();
-  next();
-};
-
-app.use(requestTime);
-
-app.use(myLogger);
-
+// Read
 app.get('/recipes', async (req, res) => {
   const { rows } = await client.query('SELECT name FROM recipes;');
   res.send(rows[0]);
