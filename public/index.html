@@ -13,7 +13,16 @@
   <span>
     <a href="/recipes">Link</a>
   </span>
-  <script src="js/app.js"></script>
+  <script>
+    var header = document.querySelector('h1');
+    let recipeNames = fetch('/recipes')
+      .then(function (response) { return response.json() })
+      .then(function (response) {
+        console.log(response.name);
+        header.textContent = response.name;
+      })
+      .catch(error => console.error(error))
+  </script>
 </body>
 
 </html>

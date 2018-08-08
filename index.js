@@ -3,7 +3,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.static('public'));
-
+// app.get('/', (req, res) => { res.sendFile('/Users/bryanmccaffrey/react/pgnode/public/index.html')})
 const { Client } = require('pg');
 
 const client = new Client({
@@ -32,8 +32,7 @@ app.use(myLogger);
 
 app.get('/recipes', async (req, res) => {
   const { rows } = await client.query('SELECT name FROM recipes;');
-  const length = rows.length;
-  res.send(rows);
+  res.send(rows[0]);
 });
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
