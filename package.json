@@ -1,5 +1,5 @@
 {
-  "name": "pg",
+  "name": "pgnode",
   "version": "1.0.0",
   "description": "Trying to make Node & Postgres work together",
   "main": "index.js",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/bmccaffrey/node-postgres#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "pg": "^7.4.3"
   }
 }
