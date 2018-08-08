@@ -16,13 +16,24 @@ const client = new Client({
 
 client.connect();
 
-client.query('SELECT * FROM recipes', (err, res) => {
-  console.log(err, res.rows[0].name);
-  client.end();
-});
+var myLogger = function(req, res, next) {
+  console.log('LOGGED');
+  next();
+};
 
-app.get('/recipes', (req, res) => {
-  console.log('hi');
+var requestTime = function(req, res, next) {
+  req.requestTime = Date.now();
+  next();
+};
+
+app.use(requestTime);
+
+app.use(myLogger);
+
+app.get('/recipes', async (req, res) => {
+  const { rows } = await client.query('SELECT name FROM recipes;');
+  const length = rows.length;
+  res.send(rows);
 });
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
