@@ -1,0 +1,19 @@
+{
+  "name": "pg",
+  "version": "1.0.0",
+  "description": "Trying to make Node & Postgres work together",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmccaffrey/node-postgres.git"
+  },
+  "author": "Bryan McCaffrey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bmccaffrey/node-postgres/issues"
+  },
+  "homepage": "https://github.com/bmccaffrey/node-postgres#readme"
+}
