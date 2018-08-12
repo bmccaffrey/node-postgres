@@ -1,3 +1,4 @@
+// Imports
 const express = require('express');
 const app = express();
 const { Client } = require('pg');
@@ -17,8 +18,10 @@ client.connect();
 
 // Read
 app.get('/recipes', async (req, res) => {
-  const { rows } = await client.query('SELECT name FROM recipes;');
-  res.send(rows[0]);
+  const { rows } = await client.query(
+    'SELECT name, ingredients, directions FROM recipes;'
+  );
+  res.send(rows);
 });
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

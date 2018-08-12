@@ -9,19 +9,32 @@
 </head>
 
 <body>
-  <h1>Placeholder</h1>
+  <h1>Name</h1>
+  <h2>Ingredients</h2>
+  <h3>Directions</h3>
+  <div>
+    <button>New Recipe</button>
+  </div>
+  <br>
+
   <span>
     <a href="/recipes">Link</a>
   </span>
   <script>
-    var header = document.querySelector('h1');
+    var recipeName = document.querySelector('h1');
+    var ingredients = document.querySelector('h2');
+    var directions = document.querySelector('h3');
+
     let recipeNames = fetch('/recipes')
       .then(function (response) { return response.json() })
       .then(function (response) {
-        console.log(response.name);
-        header.textContent = response.name;
+        console.log(response[0]);
+        recipeName.textContent = response[0].name;
+        ingredients.textContent = response[0].ingredients;
+        directions.textContent = response[0].directions;
       })
       .catch(error => console.error(error))
+
   </script>
 </body>
 
