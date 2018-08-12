@@ -24,4 +24,12 @@ app.get('/recipes', async (req, res) => {
   res.send(rows);
 });
 
+// FIXME: Need a way to append information to INSERT statement
+// Create
+app.post('/addrecipe', async (req, res) => {
+  await client.query(
+    "INSERT INTO recipes (name, ingredients, directions) VALUES ('Peanut Butter and Jelly', 'Bread, Peanut Butter, and Jelly', 'Apply to both sides, put them together, enjoy');"
+  );
+});
+
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

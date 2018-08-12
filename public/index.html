@@ -35,6 +35,9 @@
       })
       .catch(error => console.error(error))
 
+    var myRequest = new Request('/addrecipe', { method: 'POST' });
+    let createRecipe = fetch(myRequest);
+
   </script>
 </body>
 
