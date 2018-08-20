@@ -20,35 +20,46 @@
   <span>
     <a href="/recipes">Link</a>
   </span>
+  <br>
+  <form action="/recipes">
+    <select name="recipes" id="">
+      <option value="name">Name</option>
+      <option value="ingredients">Ingredients</option>
+      <option value="directions">Directions</option>
+    </select>
+    <br>
+    <input type="submit">
+  </form>
+
   <script>
     var recipeName = document.querySelector('h1');
     var ingredients = document.querySelector('h2');
     var directions = document.querySelector('h3');
 
-    let recipeNames = fetch('/recipes')
-      .then(function (response) { return response.json() })
-      .then(function (response) {
-        console.log(response[0]);
-        recipeName.textContent = response[0].name;
-        ingredients.textContent = response[0].ingredients;
-        directions.textContent = response[0].directions;
-      })
-      .catch(error => console.error(error))
+    // let recipeNames = fetch('/recipes')
+    //   .then(function (response) { return response.json() })
+    //   .then(function (response) {
+    //     console.log(response[0]);
+    //     recipeName.textContent = response[0].name;
+    //     ingredients.textContent = response[0].ingredients;
+    //     directions.textContent = response[0].directions;
+    //   })
+    //   .catch(error => console.error(error))
 
-    var myRequest = new Request('/addrecipe', { method: 'POST' });
-    let createRecipe = fetch(myRequest)
-      .then(response => {
-        if (response.status === 200) {
-          return response.json();
-        } else {
-          throw new Error('Something went wrong on API server.');
-        }
-      })
-      .then(response => {
-        console.debug(response);
-      }).catch(error => {
-        console.error(error);
-      });
+    // var myRequest = new Request('/addrecipe', { method: 'POST' });
+    // let createRecipe = fetch(myRequest)
+    //   .then(response => {
+    //     if (response.status === 200) {
+    //       return response.json();
+    //     } else {
+    //       throw new Error('Something went wrong on API server.');
+    //     }
+    //   })
+    //   .then(response => {
+    //     console.debug(response);
+    //   }).catch(error => {
+    //     console.error(error);
+    //   });
 
   </script>
 </body>

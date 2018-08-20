@@ -14,22 +14,29 @@ const client = new Client({
   port: 5432
 });
 
-client.connect();
+var start = new Date();
 
-// Read
-app.get('/recipes', async (req, res) => {
-  const { rows } = await client.query(
-    'SELECT name, ingredients, directions FROM recipes;'
-  );
-  res.send(rows);
-});
+async function connect() {
+  await client.connect();
+  var end = new Date();
+  var elapsed = end - start;
+  console.log(`Connected to Client ${elapsed} ms after beginning`);
+}
 
-// FIXME: Need a way to append information to INSERT statement
-// Create
-app.post('/addrecipe', async (req, res) => {
-  await client.query(
-    "INSERT INTO recipes (name, ingredients, directions) VALUES ('Peanut Butter and Jelly', 'Bread, Peanut Butter, and Jelly', 'Apply to both sides, put them together, enjoy');"
-  );
+connect();
+
+// Can use something like for most displays; display just names, etc.
+// This logic will work with pagination of recipes and the like
+// Have to use interpolation with pg params not functioning correctly
+app.use(async (req, res) => {
+  if (req.method == 'GET') {
+    console.log('Got a GET');
+    console.log(req.originalUrl);
+    const values = req.query.recipes;
+    const { rows } = await client.query(`SELECT ${values} FROM recipes;`);
+    console.log('Rows:', rows);
+    res.send(rows);
+  }
 });
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
