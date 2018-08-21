@@ -28,11 +28,13 @@ connect();
 // Can use something like for most displays; display just names, etc.
 // This logic will work with pagination of recipes and the like
 // Have to use interpolation with pg params not functioning correctly
-app.use(async (req, res) => {
+
+app.get('/recipes', async (req, res) => {
   if (req.method == 'GET') {
     console.log('Got a GET');
     console.log(req.originalUrl);
     const values = req.query.recipes;
+    console.log(values);
     const { rows } = await client.query(`SELECT ${values} FROM recipes;`);
     console.log('Rows:', rows);
     res.send(rows);
