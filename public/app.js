@@ -2,6 +2,8 @@ var body = document.querySelector('body');
 var root = document.getElementById('root');
 var selector = document.querySelector('select');
 var button = document.querySelector('button');
+var deleteSelector = document.getElementById('deleteSelector');
+var deleteButton = document.getElementById('deleteButton');
 
 const removeChildren = parent => {
   while (parent.childElementCount > 0) {
