@@ -2,10 +2,15 @@ var body = document.querySelector('body');
 var root = document.getElementById('root');
 var selector = document.querySelector('select');
 var button = document.querySelector('button');
-function get() {
-  while (root.childElementCount > 0) {
-    root.lastElementChild.remove();
+
+const removeChildren = parent => {
+  while (parent.childElementCount > 0) {
+    parent.lastElementChild.remove();
   }
+};
+
+function get() {
+  removeChildren(root);
   let value = selector.value;
   console.log(value);
   let recipeNames = fetch(`/recipes?recipes=${value}`)
