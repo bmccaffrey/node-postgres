@@ -20,6 +20,7 @@ const appendResults = (response, element, target) => {
     target.appendChild(x);
   });
 };
+
 const fetchSelectorValue = () => {
   let value = selector.value;
   console.log(value);
@@ -34,4 +35,11 @@ const get = () => {
     .catch(error => console.error(error));
 };
 
+const populateSelector = () => {
+  fetch('/recipes?recipes=name')
+    .then(response => response.json())
+    .then(response => appendResults(response, 'option', deleteSelector));
+};
+
 selector.addEventListener('input', get);
+deleteButton.addEventListener('click', getRecipeNames);
