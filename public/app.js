@@ -23,23 +23,28 @@ const appendResults = (response, element, target) => {
   });
 };
 
+const fetcher = (column, method = 'GET') => {
+  return fetch(`/recipes?recipes=${column}`, { method: method }).then(
+    response => response.json()
+  );
+};
+
 const get = () => {
   removeChildren(root);
-  fetchSelectorValue(selector, 'GET')
-    .then(response => response.json())
+  fetcher(selector.value)
     .then(response => appendResults(response, 'h1', root))
     .catch(error => console.error(error));
 };
 
 // fetches recipe names, converts to option elements, appends to delete selector
 const populateSelector = () => {
-  fetch('/recipes?recipes=name')
-    .then(response => response.json())
-    .then(response => appendResults(response, 'option', deleteSelector));
+  fetcher('name').then(response =>
+    appendResults(response, 'option', deleteSelector)
+  );
 };
 
 const deleteRecipe = () => {
-  fetchSelectorValue(deleteSelector, 'DELETE');
+  fetcher(deleteSelector.value, 'DELETE');
 };
 
 populateSelector();
