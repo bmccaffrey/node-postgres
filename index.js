@@ -28,27 +28,23 @@ async function connect() {
 
 connect();
 
-// Can use something like for most displays; display just names, etc.
-// This logic will work with pagination of recipes and the like
-// Have to use interpolation with pg params not functioning correctly
-
 app.get('/recipes', async (req, res) => {
   if (req.method == 'GET') {
-    console.log('Got a GET');
-    console.log(req.originalUrl);
     const values = req.query.recipes;
-    console.log(values);
     const { rows } = await client.query(`SELECT ${values} FROM recipes;`);
     console.log('Rows:', rows);
     res.send(rows);
   }
 });
 
-app.post('/addrecipe', async (req, res) => {
-  console.log('Got a POST');
-  console.log(req.originalUrl);
-  console.log(req.body);
-  await res.send(req.body);
+app.post('/', async (req, res) => {
+  const name = req.body.name;
+  const ingredients = req.body.ingredients;
+  const directions = req.body.directions;
+  await client.query(
+    `INSERT INTO recipes (name, ingredients, directions) VALUES ('${name}', '${ingredients}', '${directions}');`
+  );
+  await res.redirect('/');
 });
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
