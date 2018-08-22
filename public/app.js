@@ -35,6 +35,7 @@ const get = () => {
     .catch(error => console.error(error));
 };
 
+// fetches recipe names, converts to option elements, appends to delete selector
 const populateSelector = () => {
   fetch('/recipes?recipes=name')
     .then(response => response.json())
