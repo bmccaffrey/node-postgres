@@ -17,21 +17,20 @@
       <option value="directions">Directions</option>
       <option value="*">All</option>
     </select>
-    <!-- <br>
-    <input type="submit" id="subButton"> -->
   </form>
   <h1>Name</h1>
   <h2>Ingredients</h2>
   <h3>Directions</h3>
   <div>
-    <form action="/addrecipe">
-      <input type="text" name="" id="" placeholder="Name">
-      <br>
+    <form action="/addrecipe" method="post">
+      <input type="text" name="recName" placeholder="Name">
+      <!-- <br>
       <input type="text" name="" id="" placeholder="Ingredients">
       <br>
-      <input type="text" name="" id="" placeholder="Directions">
+      <input type="text" name="" id="" placeholder="Directions"> -->
+      <input type="submit">
+      <!-- <button>Create New Recipe</button> -->
     </form>
-    <button>Create New Recipe</button>
   </div>
   <br>
 
@@ -45,6 +44,7 @@
     var ingredients = document.querySelector('h2');
     var directions = document.querySelector('h3');
     var selector = document.querySelector('select');
+    var button = document.querySelector('button');
     function get() {
       let value = selector.value;
       console.log(value);
@@ -58,22 +58,8 @@
         })
         .catch(error => console.error(error))
     }
-    // button.addEventListener('click', Grab);
+
     selector.addEventListener('input', get);
-    // var myRequest = new Request('/addrecipe', { method: 'POST' });
-    // let createRecipe = fetch(myRequest)
-    //   .then(response => {
-    //     if (response.status === 200) {
-    //       return response.json();
-    //     } else {
-    //       throw new Error('Something went wrong on API server.');
-    //     }
-    //   })
-    //   .then(response => {
-    //     console.debug(response);
-    //   }).catch(error => {
-    //     console.error(error);
-    //   });
 
   </script>
 </body>
