@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    .gridcontainer {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  </style>
 </head>
 
 <body>
@@ -38,6 +44,17 @@
       <option value="">--</option>
     </select>
     <button id="deleteButton">Delete</button>
+  </div>
+
+  <div>
+    <legend>Update</legend>
+    <hr>
+    <div class="gridcontainer">
+      <h1>Name</h1>
+      <h2>Directions</h2>
+      <h3>Ingredients</h3>
+      <button id="putButton">Update</button>
+    </div>
   </div>
 
   <script src="app.js"></script>

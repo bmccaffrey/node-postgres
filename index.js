@@ -57,4 +57,8 @@ app.delete('/recipes', async (req, res) => {
   res.send(`${column} was deleted.`);
 });
 
+app.put('/recipes', async (req, res) => {
+  console.log('PUT request received');
+});
+
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
