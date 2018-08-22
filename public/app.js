@@ -21,15 +21,15 @@ const appendResults = (response, element, target) => {
   });
 };
 
-const fetchSelectorValue = selector => {
+const fetchSelectorValue = (selector, method) => {
   let value = selector.value;
   console.log(value);
-  return fetch(`/recipes?recipes=${value}`);
+  return fetch(`/recipes?recipes=${value}`, { method: method });
 };
 
 const get = () => {
   removeChildren(root);
-  fetchSelectorValue(selector)
+  fetchSelectorValue(selector, 'GET')
     .then(response => response.json())
     .then(response => appendResults(response, 'h1', root))
     .catch(error => console.error(error));
@@ -43,8 +43,7 @@ const populateSelector = () => {
 };
 
 const deleteRecipe = () => {
-  var myRequest = new Request('/', { method: 'DELETE' });
-  fetch(myRequest);
+  fetchSelectorValue(deleteSelector, 'DELETE');
 };
 
 populateSelector();

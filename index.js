@@ -30,8 +30,8 @@ connect();
 
 app.get('/recipes', async (req, res) => {
   if (req.method == 'GET') {
-    const values = req.query.recipes;
-    const { rows } = await client.query(`SELECT ${values} FROM recipes;`);
+    const column = req.query.recipes;
+    const { rows } = await client.query(`SELECT ${column} FROM recipes;`);
     console.log('Rows:', rows);
     res.send(rows);
   }
@@ -47,9 +47,14 @@ app.post('/', async (req, res) => {
   await res.redirect('/');
 });
 
-app.delete('/', async (req, res) => {
+app.delete('/recipes', async (req, res) => {
   console.log('DELETE Request Received');
-  res.send('DELETE Request Received');
+  const column = req.query.recipes;
+  column
+    ? await client.query(`DELETE FROM recipes WHERE name = '${column}';`)
+    : console.log('No column was received');
+
+  res.send(`${column} was deleted.`);
 });
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
