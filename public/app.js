@@ -18,19 +18,18 @@ const appendResults = response => {
     root.append(x);
   });
 };
-
-function get() {
-  removeChildren(root);
+const fetchSelectorValue = () => {
   let value = selector.value;
   console.log(value);
-  let recipeNames = fetch(`/recipes?recipes=${value}`)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(response) {
-      appendResults(response);
-    })
+  return fetch(`/recipes?recipes=${value}`);
+};
+
+const get = () => {
+  removeChildren(root);
+  fetchSelectorValue()
+    .then(response => response.json())
+    .then(response => appendResults(response))
     .catch(error => console.error(error));
-}
+};
 
 selector.addEventListener('input', get);
