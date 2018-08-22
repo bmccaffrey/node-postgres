@@ -23,12 +23,6 @@ const appendResults = (response, element, target) => {
   });
 };
 
-const fetchSelectorValue = (selector, method) => {
-  let value = selector.value;
-  console.log(value);
-  return fetch(`/recipes?recipes=${value}`, { method: method });
-};
-
 const get = () => {
   removeChildren(root);
   fetchSelectorValue(selector, 'GET')
