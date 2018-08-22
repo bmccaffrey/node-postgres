@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const client = new Client({
   user: 'generic',
@@ -41,6 +42,13 @@ app.get('/recipes', async (req, res) => {
     console.log('Rows:', rows);
     res.send(rows);
   }
+});
+
+app.post('/addrecipe', async (req, res) => {
+  console.log('Got a POST');
+  console.log(req.originalUrl);
+  console.log(req.body);
+  await res.send(req.body);
 });
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
