@@ -47,4 +47,9 @@ app.post('/', async (req, res) => {
   await res.redirect('/');
 });
 
+app.delete('/', async (req, res) => {
+  console.log('DELETE Request Received');
+  res.send('DELETE Request Received');
+});
+
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

@@ -42,5 +42,11 @@ const populateSelector = () => {
     .then(response => appendResults(response, 'option', deleteSelector));
 };
 
+const deleteRecipe = () => {
+  var myRequest = new Request('/', { method: 'DELETE' });
+  fetch(myRequest);
+};
+
+populateSelector();
 selector.addEventListener('input', get);
-deleteButton.addEventListener('click', getRecipeNames);
+deleteButton.addEventListener('click', deleteRecipe);
