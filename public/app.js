@@ -21,7 +21,7 @@ const appendResults = (response, element, target) => {
   });
 };
 
-const fetchSelectorValue = () => {
+const fetchSelectorValue = selector => {
   let value = selector.value;
   console.log(value);
   return fetch(`/recipes?recipes=${value}`);
@@ -29,7 +29,7 @@ const fetchSelectorValue = () => {
 
 const get = () => {
   removeChildren(root);
-  fetchSelectorValue()
+  fetchSelectorValue(selector)
     .then(response => response.json())
     .then(response => appendResults(response, 'h1', root))
     .catch(error => console.error(error));
