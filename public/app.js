@@ -9,13 +9,13 @@ const removeChildren = parent => {
   }
 };
 
-const appendResults = response => {
+const appendResults = (response, element, target) => {
   console.log(response);
-  response.forEach(element => {
-    console.log(Object.values(element));
-    let x = document.createElement('h1');
-    x.textContent = Object.values(element).slice(0);
-    root.append(x);
+  response.forEach(item => {
+    console.log(Object.values(item));
+    let x = document.createElement(element);
+    x.textContent = Object.values(item).slice(0);
+    target.appendChild(x);
   });
 };
 const fetchSelectorValue = () => {
@@ -28,7 +28,7 @@ const get = () => {
   removeChildren(root);
   fetchSelectorValue()
     .then(response => response.json())
-    .then(response => appendResults(response))
+    .then(response => appendResults(response, 'h1', root))
     .catch(error => console.error(error));
 };
 
