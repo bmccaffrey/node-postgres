@@ -10,6 +10,7 @@
 
 <body>
   <form action="/recipes">
+    <legend>Read</legend>
     <select name="recipes" id="">
       <option value="">--</option>
       <option value="name">Name</option>
@@ -17,19 +18,19 @@
       <option value="directions">Directions</option>
       <!-- <option value="*">All</option> -->
     </select>
+
   </form>
   <div id="root"></div>
-  <div>
-    <form action="/" method="post">
-      <input type="text" name="name" placeholder="Name">
-      <br>
-      <input type="text" name="ingredients" id="" placeholder="Ingredients">
-      <br>
-      <input type="text" name="directions" id="" placeholder="Directions">
-      <input type="submit">
-    </form>
-  </div>
-  <br>
+
+  <form action="/" method="post">
+    <legend>Create</legend>
+    <input type="text" name="name" placeholder="Name">
+    <br>
+    <input type="text" name="ingredients" id="" placeholder="Ingredients">
+    <br>
+    <input type="text" name="directions" id="" placeholder="Directions">
+    <input type="submit">
+  </form>
 
   <script src="app.js"></script>
 </body>
