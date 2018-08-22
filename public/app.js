@@ -9,6 +9,16 @@ const removeChildren = parent => {
   }
 };
 
+const appendResults = response => {
+  console.log(response);
+  response.forEach(element => {
+    console.log(Object.values(element));
+    let x = document.createElement('h1');
+    x.textContent = Object.values(element).slice(0);
+    root.append(x);
+  });
+};
+
 function get() {
   removeChildren(root);
   let value = selector.value;
@@ -18,14 +28,7 @@ function get() {
       return response.json();
     })
     .then(function(response) {
-      console.log(value);
-      console.log(response);
-      response.forEach(element => {
-        console.log(Object.values(element));
-        let x = document.createElement('h1');
-        x.textContent = Object.values(element).slice(0);
-        root.append(x);
-      });
+      appendResults(response);
     })
     .catch(error => console.error(error));
 }
