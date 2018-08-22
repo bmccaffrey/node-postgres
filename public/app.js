@@ -4,6 +4,8 @@ var selector = document.querySelector('select');
 var button = document.querySelector('button');
 var deleteSelector = document.getElementById('deleteSelector');
 var deleteButton = document.getElementById('deleteButton');
+var putButton = document.getElementById('putButton');
+var gridContainer = document.querySelector('.gridcontainer');
 
 const removeChildren = parent => {
   while (parent.childElementCount > 0) {
